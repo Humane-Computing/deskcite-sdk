@@ -1,0 +1,9 @@
+[package]
+name = "deskcite-sdk-tutorials"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+deskcite-sdk = { path = "../../../rust" }
+serde_json = "1.0"
+openssl = "0.10"

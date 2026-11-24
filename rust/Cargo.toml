@@ -1,0 +1,14 @@
+[package]
+name = "deskcite-sdk"
+version = "0.1.0"
+edition = "2021"
+build = "build.rs"
+[lib]
+name = "deskcite"
+[dependencies]
+mesgd-pki = { path = "../../mesgd-sdk/rust" }
+serde_json = "1.0"
+[build-dependencies]
+cc = "1.0"
+[dev-dependencies]
+openssl = "0.10"

@@ -1,0 +1,1 @@
+{"name":"deskcite-sdk","version":"0.1.0","type":"module","exports":"./deskcite.mjs","files":["deskcite.mjs","operations.json"],"engines":{"node":">=22"},"dependencies":{"ws":"^8.18.0"}}

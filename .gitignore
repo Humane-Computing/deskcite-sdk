@@ -1,0 +1,21 @@
+erlang/ebin/
+*.beam
+erl_crash.dump
+mesgd_keys.json
+_test/
+node_modules/
+__pycache__/
+*.egg-info/
+build/
+dist/
+rust/target/
+tests/c_test
+
+examples/tutorials/bin/
+*.rotate-*
+*-keys.json
+
+# Tutorial build products
+samples/*/tutorials/bin/
+samples/*/tutorials/target/
+samples/*/tutorials/.venv/

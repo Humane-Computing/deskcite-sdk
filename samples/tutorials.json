@@ -1,0 +1,131 @@
+{
+  "Python": {
+    "hello": {
+      "source": "samples/01-python/tutorials/hello.py",
+      "argv": [
+        "python3",
+        "samples/01-python/tutorials/hello.py"
+      ]
+    },
+    "bus": {
+      "source": "samples/01-python/tutorials/bus.py",
+      "argv": [
+        "python3",
+        "samples/01-python/tutorials/bus.py"
+      ]
+    },
+    "rotate": {
+      "source": "samples/01-python/tutorials/rotate.py",
+      "argv": [
+        "python3",
+        "samples/01-python/tutorials/rotate.py"
+      ]
+    }
+  },
+  "JavaScript": {
+    "hello": {
+      "source": "samples/02-javascript/tutorials/hello.mjs",
+      "argv": [
+        "node",
+        "samples/02-javascript/tutorials/hello.mjs"
+      ]
+    },
+    "bus": {
+      "source": "samples/02-javascript/tutorials/bus.mjs",
+      "argv": [
+        "node",
+        "samples/02-javascript/tutorials/bus.mjs"
+      ]
+    },
+    "rotate": {
+      "source": "samples/02-javascript/tutorials/rotate.mjs",
+      "argv": [
+        "node",
+        "samples/02-javascript/tutorials/rotate.mjs"
+      ]
+    }
+  },
+  "C": {
+    "hello": {
+      "source": "samples/04-c/tutorials/hello.c",
+      "argv": [
+        "samples/04-c/tutorials/bin/hello"
+      ]
+    },
+    "bus": {
+      "source": "samples/04-c/tutorials/bus.c",
+      "argv": [
+        "samples/04-c/tutorials/bin/bus"
+      ]
+    },
+    "rotate": {
+      "source": "samples/04-c/tutorials/rotate.c",
+      "argv": [
+        "samples/04-c/tutorials/bin/rotate"
+      ]
+    }
+  },
+  "Go": {
+    "hello": {
+      "source": "samples/07-go/tutorials/cmd/hello/main.go",
+      "argv": [
+        "samples/07-go/tutorials/bin/hello"
+      ]
+    },
+    "bus": {
+      "source": "samples/07-go/tutorials/cmd/bus/main.go",
+      "argv": [
+        "samples/07-go/tutorials/bin/bus"
+      ]
+    },
+    "rotate": {
+      "source": "samples/07-go/tutorials/cmd/rotate/main.go",
+      "argv": [
+        "samples/07-go/tutorials/bin/rotate"
+      ]
+    }
+  },
+  "Rust": {
+    "hello": {
+      "source": "samples/08-rust/tutorials/src/bin/hello.rs",
+      "argv": [
+        "samples/08-rust/tutorials/target/debug/hello"
+      ]
+    },
+    "bus": {
+      "source": "samples/08-rust/tutorials/src/bin/bus.rs",
+      "argv": [
+        "samples/08-rust/tutorials/target/debug/bus"
+      ]
+    },
+    "rotate": {
+      "source": "samples/08-rust/tutorials/src/bin/rotate.rs",
+      "argv": [
+        "samples/08-rust/tutorials/target/debug/rotate"
+      ]
+    }
+  },
+  "Ruby": {
+    "hello": {
+      "source": "samples/11-ruby/tutorials/hello.rb",
+      "argv": [
+        "ruby",
+        "samples/11-ruby/tutorials/hello.rb"
+      ]
+    },
+    "bus": {
+      "source": "samples/11-ruby/tutorials/bus.rb",
+      "argv": [
+        "ruby",
+        "samples/11-ruby/tutorials/bus.rb"
+      ]
+    },
+    "rotate": {
+      "source": "samples/11-ruby/tutorials/rotate.rb",
+      "argv": [
+        "ruby",
+        "samples/11-ruby/tutorials/rotate.rb"
+      ]
+    }
+  }
+}

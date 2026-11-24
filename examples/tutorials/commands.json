@@ -1,0 +1,131 @@
+{
+  "Python": {
+    "hello": {
+      "source": "examples/tutorials/python/hello.py",
+      "argv": [
+        "python3",
+        "examples/tutorials/python/hello.py"
+      ]
+    },
+    "bus": {
+      "source": "examples/tutorials/python/bus.py",
+      "argv": [
+        "python3",
+        "examples/tutorials/python/bus.py"
+      ]
+    },
+    "rotate": {
+      "source": "examples/tutorials/python/rotate.py",
+      "argv": [
+        "python3",
+        "examples/tutorials/python/rotate.py"
+      ]
+    }
+  },
+  "JavaScript": {
+    "hello": {
+      "source": "examples/tutorials/javascript/hello.mjs",
+      "argv": [
+        "node",
+        "examples/tutorials/javascript/hello.mjs"
+      ]
+    },
+    "bus": {
+      "source": "examples/tutorials/javascript/bus.mjs",
+      "argv": [
+        "node",
+        "examples/tutorials/javascript/bus.mjs"
+      ]
+    },
+    "rotate": {
+      "source": "examples/tutorials/javascript/rotate.mjs",
+      "argv": [
+        "node",
+        "examples/tutorials/javascript/rotate.mjs"
+      ]
+    }
+  },
+  "Go": {
+    "hello": {
+      "source": "go/cmd/tutorial-hello/main.go",
+      "argv": [
+        "examples/tutorials/bin/go-hello"
+      ]
+    },
+    "bus": {
+      "source": "go/cmd/tutorial-bus/main.go",
+      "argv": [
+        "examples/tutorials/bin/go-bus"
+      ]
+    },
+    "rotate": {
+      "source": "go/cmd/tutorial-rotate/main.go",
+      "argv": [
+        "examples/tutorials/bin/go-rotate"
+      ]
+    }
+  },
+  "Ruby": {
+    "hello": {
+      "source": "examples/tutorials/ruby/hello.rb",
+      "argv": [
+        "ruby",
+        "examples/tutorials/ruby/hello.rb"
+      ]
+    },
+    "bus": {
+      "source": "examples/tutorials/ruby/bus.rb",
+      "argv": [
+        "ruby",
+        "examples/tutorials/ruby/bus.rb"
+      ]
+    },
+    "rotate": {
+      "source": "examples/tutorials/ruby/rotate.rb",
+      "argv": [
+        "ruby",
+        "examples/tutorials/ruby/rotate.rb"
+      ]
+    }
+  },
+  "Rust": {
+    "hello": {
+      "source": "rust/examples/tutorial_hello.rs",
+      "argv": [
+        "rust/target/debug/examples/tutorial_hello"
+      ]
+    },
+    "bus": {
+      "source": "rust/examples/tutorial_bus.rs",
+      "argv": [
+        "rust/target/debug/examples/tutorial_bus"
+      ]
+    },
+    "rotate": {
+      "source": "rust/examples/tutorial_rotate.rs",
+      "argv": [
+        "rust/target/debug/examples/tutorial_rotate"
+      ]
+    }
+  },
+  "C": {
+    "hello": {
+      "source": "examples/tutorials/c/hello.c",
+      "argv": [
+        "examples/tutorials/bin/c-hello"
+      ]
+    },
+    "bus": {
+      "source": "examples/tutorials/c/bus.c",
+      "argv": [
+        "examples/tutorials/bin/c-bus"
+      ]
+    },
+    "rotate": {
+      "source": "examples/tutorials/c/rotate.c",
+      "argv": [
+        "examples/tutorials/bin/c-rotate"
+      ]
+    }
+  }
+}
