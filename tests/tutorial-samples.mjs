@@ -27,5 +27,5 @@ try{
    out=await launch(command('bus'),['client']).done;assert.match(out,/"text"\s*:\s*"hello"/);assert.match(service.text(),/agent received:/);assert.equal(fixture.counts().replies-before.replies,1);console.log(`PASS ${name} WSS caller → echo agent → caller`);
   }finally{service.p.kill('SIGTERM');await service.done.catch(()=>{});}
  }
- console.log('PASS: 18 public samples tutorials; isolated HTTPS/WSS fixture, no live account mutations.');
+ console.log(`PASS: ${Object.keys(commands).length*3} public samples tutorials; isolated HTTPS/WSS fixture, no live account mutations.`);
 }finally{await fixture.close()}

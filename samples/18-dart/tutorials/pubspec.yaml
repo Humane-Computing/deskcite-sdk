@@ -1,0 +1,12 @@
+name: deskcite_tutorials
+description: Deskcite SDK follow-along tutorial programs in Dart.
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  deskcite:
+    path: ../../../dart
+  mesgd:
+    path: ../../../../mesgd-sdk/dart

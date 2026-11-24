@@ -1,12 +1,23 @@
 # deskcite-sdk
 
-Deskcite's product API for agents and applications, over authenticated mesgd HTTPS routes with mesgd WebSocket events. Implemented in **Erlang, C, Go, JavaScript, Python, Ruby, and Rust**. The Erlang `deskcite_agent` example registers remote Deskcite tools in the existing agent framework.
+## Website tutorials
+
+Watch the [SDK tutorials](https://deskcite.com/sdk-guide.html) and follow along with these sources:
+
+- [Python: your first search](https://deskcite.com/sdk-guide.html#python-search) — `hello.py`.
+- [Python: send work to an agent](https://deskcite.com/sdk-guide.html#python-agent-messaging) — `bus.py`.
+- [Python: credentials and rotation](https://deskcite.com/sdk-guide.html#python-credentials) — `rotate.py` and `common.py`.
+
+Repository: [Humane-Computing/deskcite-sdk](https://github.com/Humane-Computing/deskcite-sdk).
+
+
+Deskcite's product API for agents and applications, over authenticated mesgd HTTPS routes with mesgd WebSocket events. Implemented in **Erlang, C, Go, JavaScript, Python, Ruby, Rust, and Dart**. The Erlang `deskcite_agent` example registers remote Deskcite tools in the existing agent framework.
 
 This is an initial local SDK checkout, not a published package release. It uses the sibling `mesgd-sdk` checkout for WebSockets and PKI; HTTPS adapters preserve product response status, headers, error bodies, and document bytes that the existing mesgd auth transports do not expose. Existing mesgd, Deskcite, and agent repositories are unchanged.
 
 ## Video tutorial samples
 
-Follow along using [samples/TUTORIALS.md](samples/TUTORIALS.md). The search, agent messaging, and credential-refresh programs live in the matching `samples/##-language/tutorials/` directory for Python, JavaScript, C, Go, Rust, and Ruby. All new video examples belong there, and the recorder reads those public files directly.
+Follow along using [samples/TUTORIALS.md](samples/TUTORIALS.md). The search, agent messaging, and credential-refresh programs live in the matching `samples/##-language/tutorials/` directory for Python, JavaScript, C, Go, Rust, Ruby, and Dart. All new video examples belong there, and the recorder reads those public files directly.
 
 ## Layout and prerequisites
 
@@ -27,6 +38,7 @@ Expected checkouts:
 | Go | `go/` package `deskcite` | Go 1.21+; local module replacement points at sibling mesgd SDK |
 | Rust | `rust/` crate `deskcite` | Cargo, C compiler, libcurl and OpenSSL development libraries; sibling `mesgd-pki` crate |
 | C | `c/deskcite.h` | C11, libcurl with WebSocket support, OpenSSL, upstream mesgd and cJSON sources |
+| Dart | `dart/lib/deskcite.dart` | Dart 3; path dependency on the sibling `mesgd` Dart SDK |
 
 Rust and C share a small libcurl HTTPS engine in `c/deskcite_http.c`. Build Rust from this full repository; its build script includes that source. The local Go replacement and Rust path dependency must be changed to released upstream versions before registry publication.
 
@@ -40,7 +52,7 @@ Product HTTPS permissions, import-event subscriptions and general message publis
 
 ## Product API
 
-All languages expose `call(operation, arguments)` and named convenience methods. Arguments use the API's JSON field names. Go uses exported CamelCase names; C uses `deskcite_*` functions/macros. JavaScript, Python, Ruby, Rust and Erlang use the snake_case names below.
+All languages expose `call(operation, arguments)` and named convenience methods. Arguments use the API's JSON field names. Go uses exported CamelCase names; Dart uses lowerCamelCase; C uses `deskcite_*` functions/macros. JavaScript, Python, Ruby, Rust and Erlang use the snake_case names below.
 
 | Operation | HTTPS route | Arguments |
 |---|---|---|
@@ -64,7 +76,7 @@ All languages expose `call(operation, arguments)` and named convenience methods.
 
 `api/operations.json` is the shared route contract. Search uses the documented POST variant to keep Unicode and filters in JSON. Server validation remains authoritative. The SDK does not invent alternate schemas for erag search results. `document` accepts an already-encoded `/deskcite/documents/...` path returned by the service, including the prefix; it rejects origins, unrelated paths, queries, fragments, and traversal. Other source paths are citations, not necessarily downloadable URLs.
 
-Success preserves HTTP status, headers, and body. JavaScript/Python/Ruby/Erlang decode JSON success bodies and return raw bytes for documents. Go/Rust/C return bytes for every response, with `Response.JSON`, `Response::json`, or cJSON available for decoding. Errors preserve raw bytes because authentication middleware and proxies may return non-JSON bodies.
+Success preserves HTTP status, headers, and body. JavaScript/Python/Ruby/Erlang/Dart decode JSON success bodies and return raw bytes for documents. Go/Rust/C return bytes for every response, with `Response.JSON`, `Response::json`, or cJSON available for decoding. Errors preserve raw bytes because authentication middleware and proxies may return non-JSON bodies.
 
 | Language | Success | HTTP failure |
 |---|---|---|
@@ -75,16 +87,17 @@ Success preserves HTTP status, headers, and body. JavaScript/Python/Ruby/Erlang 
 | Go | `*Response` | `*HTTPError` contains response; network failures return ordinary errors |
 | Rust | `Response` | `Error::Http(Response)` or a transport/input error |
 | C | `dc_response`, return 0 | -2 for HTTP error with response retained, -1 for invalid input, positive CURLcode for transport failure; always free responses with `dc_response_free` |
+| Dart | `Response` with `status`, `headers`, `body` | `DeskciteError.response` |
 
 Erlang `refresh/1` returns `{ok, NewClient, Response}` to make replacement explicit. Other wrappers return the ordinary refresh response; pass its `access_token` to the token setter. C convenience methods accept a cJSON arguments object (including `id` or `path`), or NULL for no arguments.
 
-All HTTPS adapters verify server certificates and hostnames and refuse redirects. They use a 30-second request/read timeout by default. Configure a private CA rather than disabling verification: Erlang `cacerts`, Python `context`, Ruby `ca_file`, Go a verifying HTTP transport, Rust `ca_file`, C `client.ca_file`, Node `NODE_EXTRA_CA_CERTS`.
+All HTTPS adapters verify server certificates and hostnames and refuse redirects. They use a 30-second request/read timeout by default. Configure a private CA rather than disabling verification: Erlang `cacerts`, Python `context`, Ruby `ca_file`, Go a verifying HTTP transport, Rust `ca_file`, C `client.ca_file`, Dart `securityContext`, Node `NODE_EXTRA_CA_CERTS`.
 
 No wrapper automatically replays writes. `201` means a record was created; creation does not embed it. `202` for import/embed means accepted or running, not complete. Search to verify indexing. Imports have no durable job ID, and repeating one can repeat work. Preserve source paths/headings as citations and treat distance as a ranking signal, not calibrated confidence. Enforce the host application's disclosure policy before presenting results.
 
 ## Examples
 
-For complete runnable search, pub/sub agent and credential-refresh programs in the six transport languages, see [Tutorial examples](examples/tutorials/README.md). Run `make test-tutorials` for the isolated 18-example checks.
+For complete runnable search, pub/sub agent and credential-refresh programs in the seven transport languages, see [Tutorial samples](samples/TUTORIALS.md). Run `make test-tutorials` for the isolated 21-example checks.
 
 Set `DESKCITE_URL` to your HTTPS instance origin and obtain `DESKCITE_TOKEN` from your secret provider. For local source examples:
 

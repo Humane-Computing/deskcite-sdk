@@ -1,5 +1,16 @@
 # Python SDK video tutorials
 
+## Website tutorials
+
+Watch the [SDK tutorials](https://deskcite.com/sdk-guide.html) and follow along with these sources:
+
+- [Python: your first search](https://deskcite.com/sdk-guide.html#python-search) — `hello.py`.
+- [Python: send work to an agent](https://deskcite.com/sdk-guide.html#python-agent-messaging) — `bus.py`.
+- [Python: credentials and rotation](https://deskcite.com/sdk-guide.html#python-credentials) — `rotate.py` and `common.py`.
+
+Repository: [Humane-Computing/deskcite-sdk](https://github.com/Humane-Computing/deskcite-sdk).
+
+
 These are the follow-along sources for the three SDK lessons: search, agent messaging, and credential refresh. See [shared setup](../../TUTORIALS.md) first. Run these commands from the deskcite-sdk checkout root.
 
 ```sh

@@ -1,5 +1,16 @@
 # SDK video follow-along samples
 
+## Website tutorials
+
+Watch the [SDK tutorials](https://deskcite.com/sdk-guide.html) and follow along with these sources:
+
+- [Python: your first search](https://deskcite.com/sdk-guide.html#python-search) — `hello.py`.
+- [Python: send work to an agent](https://deskcite.com/sdk-guide.html#python-agent-messaging) — `bus.py`.
+- [Python: credentials and rotation](https://deskcite.com/sdk-guide.html#python-credentials) — `rotate.py` and `common.py`.
+
+Repository: [Humane-Computing/deskcite-sdk](https://github.com/Humane-Computing/deskcite-sdk).
+
+
 These are the source programs used by the SDK tutorials. All new tutorial examples belong in the matching `samples/##-language/tutorials/` directory. Video recorders read these files, including helper code; do not maintain a separate inline program in a recording script.
 
 | Language | Follow-along source |
@@ -10,6 +21,7 @@ These are the source programs used by the SDK tutorials. All new tutorial exampl
 | Go | [07-go/tutorials](07-go/tutorials/README.md) |
 | Rust | [08-rust/tutorials](08-rust/tutorials/README.md) |
 | Ruby | [11-ruby/tutorials](11-ruby/tutorials/README.md) |
+| Dart | [18-dart/tutorials](18-dart/tutorials/README.md) |
 
 Each directory contains search (`hello`), agent messaging (`bus`), credential refresh (`rotate`), and their support files. [tutorials.json](tutorials.json) is the source/command manifest. These lessons use both mesgd's messaging transport and Deskcite's search API. Clone `mesgd-sdk` and `deskcite-sdk` side by side, as `~/Code/mesgd-sdk` and `~/Code/deskcite-sdk`.
 
@@ -69,8 +81,12 @@ With the sibling mesgd SDK and dependencies already available:
 make -f samples/tutorials.mk test
 ```
 
-This builds C, Go, and Rust, then runs all 18 tutorial programs against the Deskcite SDK's isolated HTTPS/WSS fixture. It verifies citations, request/reply, one refresh, rejection of the old bearer, private storage, and reload. No live account is changed. For manual rehearsal, run `node tests/tutorial-fixture.mjs --serve`, source the printed private environment-file path in another shell without displaying its contents, and keep that fixture running. Restart it for a fresh rotation rehearsal.
+This builds C, Go, Rust, and Dart, then runs all 21 tutorial programs against the Deskcite SDK's isolated HTTPS/WSS fixture. It verifies citations, request/reply, one refresh, rejection of the old bearer, private storage, and reload. No live account is changed. For manual rehearsal, run `node tests/tutorial-fixture.mjs --serve`, source the printed private environment-file path in another shell without displaying its contents, and keep that fixture running. Restart it for a fresh rotation rehearsal.
 
 ## Maintaining the video sources
 
 The current Python files match the code in the narrated videos, including the self-contained search program and the setup-display helpers. The recorder in `video-pipeline/guides/sdk/record-python.mjs` copies these files into its isolated recording project and reads `hello.py` for the on-screen creation step. If code changes, update the narration and record a new take. Preserve the previous take and keep test-fixture provenance in recording metadata.
+
+## Transport limits in these samples
+
+There is no durable delivery, replay, acknowledgment, or automatic reconnect. JavaScript uses an explicit reply timeout. C bounds its receive/idle loop to 30 seconds because the transport return code combines would-block and errors. Python, Ruby, Go, and Rust synchronous receive calls rely on the recording/test harness timeout if the broker stops responding. Read the shared support file with the short programs; production applications need their own cancellation and recovery policies.

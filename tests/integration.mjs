@@ -88,7 +88,8 @@ try {
     ['Ruby','ruby',['tests/ruby_test.rb']],
     ['Go','go',['test','-count=1','-v','./...'],join(root,'go')],
     ['Rust','cargo',['test','--locked','--','--nocapture'],join(root,'rust')],
-    ['C',join(root,'tests/c_test'),[]]
+    ['C',join(root,'tests/c_test'),[]],
+    ['Dart','dart',['test'],join(root,'dart')]
   ].filter(([name])=>!selected.length || selected.includes(name));
   for(const job of jobs) await run(...job);
   assert.equal(captures,0,'a client followed a redirect with credentials');

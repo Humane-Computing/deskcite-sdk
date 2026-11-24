@@ -127,5 +127,31 @@
         "samples/11-ruby/tutorials/rotate.rb"
       ]
     }
+  },
+  "Dart": {
+    "hello": {
+      "source": "samples/18-dart/tutorials/hello.dart",
+      "argv": [
+        "dart",
+        "run",
+        "samples/18-dart/tutorials/hello.dart"
+      ]
+    },
+    "bus": {
+      "source": "samples/18-dart/tutorials/bus.dart",
+      "argv": [
+        "dart",
+        "run",
+        "samples/18-dart/tutorials/bus.dart"
+      ]
+    },
+    "rotate": {
+      "source": "samples/18-dart/tutorials/rotate.dart",
+      "argv": [
+        "dart",
+        "run",
+        "samples/18-dart/tutorials/rotate.dart"
+      ]
+    }
   }
 }

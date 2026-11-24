@@ -10,8 +10,9 @@ build/
 dist/
 rust/target/
 tests/c_test
+.dart_tool/
+pubspec.lock
 
-examples/tutorials/bin/
 *.rotate-*
 *-keys.json
 

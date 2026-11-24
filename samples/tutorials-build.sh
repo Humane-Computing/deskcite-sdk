@@ -9,3 +9,4 @@ for program in hello rotate bus; do
 done
 (cd samples/07-go/tutorials && go build -o bin/hello ./cmd/hello && go build -o bin/bus ./cmd/bus && go build -o bin/rotate ./cmd/rotate)
 (cd samples/08-rust/tutorials && cargo build --offline --locked --bins)
+(cd samples/18-dart/tutorials && dart pub get)

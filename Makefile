@@ -5,11 +5,12 @@ SOURCES := $(wildcard erlang/src/*.erl examples/erlang/*.erl erlang/test/*.erl)
 export MESGD_SDK
 export GOCACHE ?= /tmp/deskcite-go-cache
 CC ?= cc
+DART ?= dart
 CFLAGS ?= -Wall -Wextra -Werror -std=c11
 CINCLUDES := -I c -I $(MESGD_SDK)/c -I $(MESGD_SDK)/3rd-party/cJSON
 CSOURCES := c/deskcite.c c/deskcite_http.c $(MESGD_SDK)/c/mesgd.c $(MESGD_SDK)/c/pki.c $(MESGD_SDK)/3rd-party/cJSON/cJSON.c
 
-.PHONY: all erlang native format check test test-unit clean
+.PHONY: all erlang native dart format check test test-unit clean
 all: erlang native
 erlang: format
 	mkdir -p erlang/ebin
@@ -22,9 +23,12 @@ check:
 	$(BEAMER) lint check $(SOURCES)
 	$(ERLANG_ROOT)/agent/scripts/check-exceptions erlang/src erlang/test examples/erlang
 	node scripts/generate.mjs --check
-native: tests/c_test
+	cd dart && $(DART) pub get && $(DART) analyze && $(DART) format --output=none --set-exit-if-changed lib test
+native: tests/c_test dart
 	cd go && go test ./...
 	cd rust && cargo test --locked
+dart:
+	cd dart && $(DART) pub get && $(DART) format lib test && $(DART) test
 tests/c_test: tests/c_test.c $(CSOURCES) c/deskcite.h c/deskcite_http.h c/operations.h c/operations.inc
 	$(CC) $(CFLAGS) $(CINCLUDES) tests/c_test.c $(CSOURCES) -lcurl -lssl -lcrypto -o $@
 test-unit: erlang check
@@ -32,7 +36,7 @@ test-unit: erlang check
 test: all test-unit
 	node tests/integration.mjs
 clean:
-	rm -rf erlang/ebin rust/target tests/c_test
+	rm -rf erlang/ebin rust/target tests/c_test dart/.dart_tool
 
 .PHONY: tutorial-build test-tutorials
 tutorial-build:
